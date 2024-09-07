@@ -1,0 +1,35 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environment directories
+venv/
+env/
+*.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python egg and distribution files
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Streamlit specific
+.streamlit/
+
+# Log files
+*.log
+
+# IDE specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Local configuration files
+*.sqlite3
+*.db
