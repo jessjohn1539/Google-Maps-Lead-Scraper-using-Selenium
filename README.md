@@ -15,3 +15,9 @@ The **Google Maps Lead Scraper** addresses this challenge by automating the proc
 - **Data Filtering**: Automatically skips sponsored results and visited links to ensure the accuracy of the scraped data.
 - **Downloadable Results**: Data can be downloaded in a CSV format for further processing or importing into other tools.
 - **User-Friendly Interface**: Built with a modern UI using Streamlit, making the tool easy to use even for non-technical users.
+
+## Images:
+
+![Scraper Interface](images/image1.png)
+
+![Scraped Data Display](images/image2.png)
