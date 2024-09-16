@@ -17,6 +17,8 @@ class GoogleMapsScraper:
     def _init_driver(self):
         options = Options()
         # options.add_argument('--headless')  # Remove or comment out this line for debugging
+        options.add_argument("--headless=new")
+        options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
