@@ -1,0 +1,6 @@
+libnss3
+libgconf-2-4
+libxss1
+libasound2
+libatk-bridge2.0-0
+libgtk-3-0
