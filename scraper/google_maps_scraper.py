@@ -19,7 +19,7 @@ class GoogleMapsScraper:
         options.add_argument('--headless')  # Remove or comment out this line for debugging
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver = webdriver.Chrome(service=Service("./chromedriver.exe"), options=options)
         return driver
 
     def scrape(self, query, max_results=100, max_pages=5):
