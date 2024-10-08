@@ -28,6 +28,20 @@ class GoogleMapsScraper:
         wait = WebDriverWait(self.driver, 10)
         time.sleep(5)  # Wait for the page to load
 
+        # Check if the business name matches the query in the h1 tag
+        try:
+            h1_element = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='DUwDvf lfPIob']")))
+            business_name_in_h1 = h1_element.text.strip()
+
+            if query.lower() in business_name_in_h1.lower():
+                print(f"Direct business match found: {business_name_in_h1}")
+                self._scrape_single_business_page()
+                self.driver.quit()
+                return
+
+        except TimeoutException:
+            print("No h1 tag found or business name does not match the query.")
+
         results = []
         for i in range(max_pages):  # Loop through a fixed number of pages
             if len(results) >= max_results:
@@ -93,6 +107,22 @@ class GoogleMapsScraper:
 
         self.driver.quit()
         return self._create_csv_string(results)
+
+    def _scrape_single_business_page(self):
+        """Scrape business data when only one business is listed."""
+        try:
+            # Scrape phone number and other details
+            business_name = self._get_element_text("//h1[@class='DUwDvf lfPIob']")
+            address = self._get_element_text("//div[contains(@class, 'AeaXub')]//div[contains(@class, 'Io6YTe')]")
+            website = self._get_element_attribute("//a[@aria-label and contains(@aria-label, 'Website')]", 'href')
+
+            # Store the result in CSV format
+            result = [{'Name': business_name, 'Address': address, 'Website': website}]
+            print(f"Scraped data: Name: {business_name} | adddress: {address} | website: {website}")
+            return self._create_csv_string(result)  
+
+        except Exception as e:
+            print(f"Error scraping business page: {e}")
 
     def _get_element_text(self, xpath):
         try:
